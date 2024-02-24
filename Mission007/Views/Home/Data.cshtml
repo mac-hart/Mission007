@@ -1,0 +1,40 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model List<SubmitMovie>
+
+<table class="table table-bordered table-striped table-hover">
+    <thead class="fw-bold">
+        <tr>
+            <td>Title</td>
+            <td>Year</td>
+            <td>Director</td>
+            <td>Rating</td>
+            <td>Edited</td>
+            <td>Lent to</td>
+            <td>Copied to Plex?</td>
+            <td>Notes</td>
+            <td>Edit</td>
+            <td>Delete</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var movie in Model)
+        {
+            <tr>
+                <td>@movie.Title</td>
+                <td>@movie.Year</td>
+                <td>@movie.Director</td>
+                <td>@(movie.Rating ?? "N/A")</td> <!-- Display "N/A" if Rating is null -->
+                <td>@(movie.Edited ? "Yes" : "No")</td> <!-- Display "Yes" if true, "No" if false -->
+                <td>@(string.IsNullOrEmpty(movie.LentTo) ? "N/A" : movie.LentTo)</td> <!-- Display "N/A" if LentTo is null or empty -->
+                <td>@(movie.CopiedToPlex ? "Yes" : "No")</td> <!-- Display "Yes" if true, "No" if false -->
+                <td>@(string.IsNullOrEmpty(movie.Notes) ? "N/A" : movie.Notes)</td> <!-- Display "N/A" if Notes is null or empty -->
+                <td><a class="btn btn-info" asp-controller="Home" asp-action="Edit" asp-route-id="@movie.MovieID">Edit</a></td>
+                <td><a class="btn btn-outline-danger" asp-controller="Home" asp-action="Delete" asp-route-id="@movie.MovieID">Delete</a></td>
+            </tr>
+        }
+    </tbody>
+</table>

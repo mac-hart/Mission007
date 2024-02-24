@@ -1,0 +1,62 @@
+﻿@using Mission007.Models
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model SubmitMovie
+
+<h1>Movie Submission</h1>
+
+<form method="post">
+
+
+    <input type="hidden" asp-for="MovieID"/>
+    <br />
+    <!-- Category -->
+    <select asp-for="CategoryID" asp-items="@(ViewBag.Categories as IEnumerable<SelectListItem>)">
+        <option value="">Select Category:</option>
+    </select>
+
+    <!-- Title -->
+    <label asp-for="Title"></label>
+    <input asp-for="Title" required class="form-control" />
+
+    <!-- Year -->
+    <label asp-for="Year"></label>
+    <input asp-for="Year" required class="form-control" />
+
+    <!-- Director -->
+    <label asp-for="Director"></label>
+    <input asp-for="Director" class="form-control" />
+
+    <!-- Rating -->
+    <label asp-for="Rating"></label>
+    <select asp-for="Rating" class="form-control">
+        <option value="G">G</option>
+        <option value="PG">PG</option>
+        <option value="PG-13">PG-13</option>
+        <option value="R">R</option>
+    </select>
+
+    <div class="form-check">
+        <input asp-for="Edited" class="form-check-input" />
+        <label asp-for="Edited" class="form-check-label">Edited</label>
+    </div>
+
+    <!-- Lent To -->
+    <label asp-for="LentTo"></label>
+    <input asp-for="LentTo" class="form-control" />
+
+    <div class="form-check">
+        <input asp-for="CopiedToPlex" class="form-check-input" />
+        <label class="form-check-label" for="CopiedToPlex">Copied to Plex</label>
+    </div>
+
+    <!-- Notes -->
+    <label asp-for="Notes"></label>
+    <input asp-for="Notes" class="form-control" />
+
+    <button type="submit">Submit</button>
+</form>
